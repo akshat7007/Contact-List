@@ -1,6 +1,6 @@
 import React from "react";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Contacts from "../component/Contacts";
+import Contacts from "../contact/Contacts";
 import "../ui/Header.css";
 
 const Header = () => {

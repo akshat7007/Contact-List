@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
-import "../component/Contacts.css";
+import "../contact/Contacts.css";
 
 const Contacts = () => {
   return (
-    <Fragment className="test">
+    <Fragment>
       <div className="contact-box">
         <img
           src="https://reqres.in/img/faces/1-image.jpg"
