@@ -1,9 +1,21 @@
-import React, { Fragment } from "react";
+import React, { Fragment} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Button from "react-bootstrap/Button";
 import "../contact/Contacts.css";
 
 const Contacts = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts);
+
+  const showContactHandler = () => {
+    dispatch({ type: 'showContact' });
+  };
+  
   return (
     <Fragment>
+      
+        <div className="contact-box">{contacts}</div>
+   
       <div className="contact-box">
         <img
           src="https://reqres.in/img/faces/1-image.jpg"
@@ -52,6 +64,9 @@ const Contacts = () => {
         />
         <h4 className="name">Tracey Ramos</h4>
       </div>
+      <Button onClick={showContactHandler} variant="dark">
+        Show Contacts
+      </Button>
     </Fragment>
   );
 };
