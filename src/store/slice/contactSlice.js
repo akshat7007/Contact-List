@@ -9,7 +9,7 @@ export const contactSlice = createSlice({
   initialState,
   reducers: {
       showContactData(state, action) {
-          console.log(action)
+        //   console.log(action)
           return {
               ...state,contact:action.payload
           }
