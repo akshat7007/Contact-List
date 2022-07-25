@@ -4,9 +4,6 @@ import Contacts from "../contact/Contacts";
 import "../ui/Header.css";
 
 const Header = () => {
-
-
-
   return (
     <div>
       <header className="header">

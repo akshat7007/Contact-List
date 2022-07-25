@@ -1,10 +1,9 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect} from "react";
 import { showContactData } from "../../store/slice/contactSlice";
 import { useSelector, useDispatch } from "react-redux";
 import "../contact/Contacts.css";
 
 const Contacts = () => {
-  const [displayContact, setDisplayContact] = useState([]);
   const contact = useSelector((state) => state.contact);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -13,17 +12,14 @@ const Contacts = () => {
       .then((json) => {
         if (json) {
           dispatch(showContactData(json.data));
-        setDisplayContact([contact]);
         }
       });
-  }, []);
-  console.log(contact);
+  }, [dispatch]);
 
   return (
     <Fragment>
       <div className="contact-box">
-        {displayContact.map((data, index) => {
-          console.log(data);
+        {contact && contact.contact?.length > 0 && contact.contact.map((data, index) => {
           return (
             <div key={index}>
               <img src={data.avatar} alt="OOPS" className="image" />
