@@ -16,10 +16,11 @@ const Contacts = () => {
       });
   }, [dispatch]);
 
+
   return (
     <Fragment>
       <div className="contact-box">
-        {contact && contact.contact?.length > 0 && contact.contact.map((data, index) => {
+        {contact.contact.map((data, index) => {
           return (
             <div key={index}>
               <img src={data.avatar} alt="OOPS" className="image" />
