@@ -22,7 +22,7 @@ const Contacts = () => {
       <div className="contact-box">
         {contact.contact.map((data, index) => {
           return (
-            <div key={index}>
+            <div key={index} className="d-flex mb-4 contactBlock"  >
               <img src={data.avatar} alt="OOPS" className="image" />
               <h4 className="name">
                 {data.first_name} {data.last_name}
