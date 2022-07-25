@@ -1,72 +1,39 @@
-import React, { Fragment} from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import { showContactData } from "../../store/slice/contactSlice";
 import { useSelector, useDispatch } from "react-redux";
-import Button from "react-bootstrap/Button";
 import "../contact/Contacts.css";
 
 const Contacts = () => {
+  const [displayContact, setDisplayContact] = useState([]);
+  const contact = useSelector((state) => state.contact);
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts);
+  useEffect(() => {
+    fetch(`https://reqres.in/api/users`)
+      .then((response) => response.json())
+      .then((json) => {
+        if (json) {
+          dispatch(showContactData(json.data));
+        setDisplayContact([contact]);
+        }
+      });
+  }, []);
+  console.log(contact);
 
-  const showContactHandler = () => {
-    dispatch({ type: 'showContact' });
-  };
-  
   return (
     <Fragment>
-      
-        <div className="contact-box">{contacts}</div>
-   
       <div className="contact-box">
-        <img
-          src="https://reqres.in/img/faces/1-image.jpg"
-          alt="OOPS"
-          className="image"
-        />
-        <h4 className="name">George Bluth</h4>
+        {displayContact.map((data, index) => {
+          console.log(data);
+          return (
+            <div key={index}>
+              <img src={data.avatar} alt="OOPS" className="image" />
+              <h4 className="name">
+                {data.first_name} {data.last_name}
+              </h4>
+            </div>
+          );
+        })}
       </div>
-      <div className="contact-box">
-        <img
-          src="https://reqres.in/img/faces/2-image.jpg"
-          alt="OOPS"
-          className="image"
-        />
-        <h4 className="name">Janet Weaver</h4>
-      </div>
-      <div className="contact-box">
-        <img
-          src="https://reqres.in/img/faces/3-image.jpg"
-          alt="OOPS"
-          className="image"
-        />
-        <h4 className="name">Emma Wong</h4>
-      </div>
-      <div className="contact-box">
-        <img
-          src="https://reqres.in/img/faces/4-image.jpg"
-          alt="OOPS"
-          className="image"
-        />
-        <h4 className="name">Eve Holt</h4>
-      </div>
-      <div className="contact-box">
-        <img
-          src="https://reqres.in/img/faces/5-image.jpg"
-          alt="OOPS"
-          className="image"
-        />
-        <h4 className="name">Charles Morris</h4>
-      </div>
-      <div className="contact-box">
-        <img
-          src="https://reqres.in/img/faces/6-image.jpg"
-          alt="OOPS"
-          className="image"
-        />
-        <h4 className="name">Tracey Ramos</h4>
-      </div>
-      <Button onClick={showContactHandler} variant="dark">
-        Show Contacts
-      </Button>
     </Fragment>
   );
 };

@@ -23,3 +23,14 @@ align-items: center;
 margin-bottom: 0px;
   margin-left: 15px;
 }
+.users {
+  display: flex;
+
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 50px;
+  width: 80%;
+
+
+
+}
