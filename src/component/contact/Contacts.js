@@ -4,48 +4,46 @@ import { useSelector, useDispatch } from "react-redux";
 import "../contact/Contacts.css";
 
 const Contacts = () => {
-  let [displayUser, setDisplayUser] = useState([]);
-  const contact = useSelector((state) => state.contact);
+  const contact = useSelector((state) => state.contact.contact);
+  const [displayContact, setDisplayContact] = useState([]);
   const dispatch = useDispatch();
+
   useEffect(() => {
     fetch(`https://reqres.in/api/users`)
       .then((response) => response.json())
-      .then((json) => {
-        if (json) {
-          dispatch(showContactData(json.data));
+      .then((data) => {
+        if (data) {
+          dispatch(showContactData(data.data));
+          setDisplayContact(data.data);
         }
       });
   }, [dispatch]);
 
-  const onSearchHandler = (search) => {
-    if (search !== "") {
-      const results = contact.contact.filter((user) => {
+  const searchContact = (search) => {
+    const contactList = search;
+    if (contactList !== "") {
+      const filter = displayContact.filter((data) => {
         return (
-          user.first_name.toLowerCase().startsWith(search.toLowerCase()) ||
-          user.last_name.toLowerCase().startsWith(search.toLowerCase())
+          data.first_name.toLowerCase().startsWith(contactList.toLowerCase()) ||
+          data.last_name.toLowerCase().startsWith(contactList.toLowerCase())
         );
       });
-      setDisplayUser(results);
-      console.log(results);
+      setDisplayContact(filter)
     } else {
-      setDisplayUser(contact);
+      setDisplayContact(contact)
     }
   };
 
   return (
     <Fragment>
-
       <div className="search">
-        <input
-          placeholder="Search Contact"
-          onChange={(e) => {
-            onSearchHandler(e.target.value);
-          }}
-        ></input>
+        <input type="text" placeholder="Search Contact" onChange={(e) => {
+            searchContact(e.target.value,contact)
+        }}></input>
       </div>
 
       <div className="contact-box">
-        {contact.contact.map((data, index) => {
+        {displayContact.map((data, index) => {
           return (
             <div key={index} className="d-flex mb-4 contactBlock">
               <img src={data.avatar} alt="OOPS" className="image" />
@@ -56,7 +54,6 @@ const Contacts = () => {
           );
         })}
       </div>
-
     </Fragment>
   );
 };
