@@ -10,9 +10,7 @@ const Header = () => {
         <div>
           <h4>All Contact</h4>
         </div>
-        <div>
-          <input placeholder="Search Contact"></input>
-        </div>
+
       </header>
       <div>
         <Contacts/>
