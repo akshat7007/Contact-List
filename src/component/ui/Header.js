@@ -10,14 +10,6 @@ const Header = () => {
         <div>
           <h4>All Contact</h4>
         </div>
-        {/* <div>
-          <NavDropdown
-            className="dropdown"
-            id="nav-dropdown-dark-example"
-            title="All"
-            menuVariant="dark"
-          ></NavDropdown>
-        </div> */}
         <div>
           <input placeholder="Search Contact"></input>
         </div>
