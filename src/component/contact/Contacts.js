@@ -37,7 +37,7 @@ const Contacts = () => {
   return (
     <Fragment>
       <div className="search">
-        <input type="text" placeholder="Search Contact" onChange={(e) => {
+        <input className="searchinput" type="text" placeholder="Search Contact" onChange={(e) => {
             searchContact(e.target.value,contact)
         }}></input>
       </div>
